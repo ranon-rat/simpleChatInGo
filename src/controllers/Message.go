@@ -43,7 +43,6 @@ func ReceiveMessages(w http.ResponseWriter, r *http.Request) {
 			delete(Clients[name], ws)
 			// if no one is in the channel,the channel and the message is deleted
 			if len(Clients[name]) == 0 {
-				log.Println(len(Clients[name]))
 				delete(Clients, name)
 				delete(Message, name)
 			}
