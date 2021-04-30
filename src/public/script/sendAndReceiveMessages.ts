@@ -23,5 +23,12 @@ const sendMsg=()=>{
 
 }
 ws.onmessage=(event) => {
-  console.log(JSON.parse(event.data));
+  let msg:Message=JSON.parse(event.data)
+  document.getElementById("messages").innerHTML+=`
+  <h1> author ${msg.author}</h1>  
+  <h1> new message ${msg.message}</h1>
+    
+    
+  `
+
 }
