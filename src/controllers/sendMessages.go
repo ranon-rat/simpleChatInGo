@@ -1,5 +1,7 @@
 package controllers
 
+import "log"
+
 func SendMessages(name string) {
 	for {
 		msg := <-Message[name] // wait for the message
@@ -15,6 +17,7 @@ func SendMessages(name string) {
 				if len(Clients[name]) == 0 {
 					delete(Clients, name)
 					delete(Message, name)
+					log.Println(Clients, Message)
 				}
 				return
 			}
