@@ -22,14 +22,11 @@ func ReceiveMessages(w http.ResponseWriter, r *http.Request) {
 	// some stuff for do this work
 	// lo que estoy haciendo aqui es checar si el canal que se a ingresado , en el caso de que no exista , se cierra
 
-	Conn, exist := Clients[name]
-	if !exist {
-		Conn = map[*websocket.Conn]bool{
+	if _, exist := Clients[name]; !exist {
+		Clients[name] = map[*websocket.Conn]bool{
 			ws: true,
 		}
 	}
-
-	Clients[name] = Conn
 	Clients[name][ws] = true
 
 	go SendMessages(name) // send the messages
