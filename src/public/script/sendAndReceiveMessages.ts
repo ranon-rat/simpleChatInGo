@@ -5,13 +5,23 @@
 	Author  string `json:"author"`
 	Message string `json:"message"`}
  */
-interface Message{
-    author:string;
-    message:string;
+interface Message {
+  author: string;
+  message: string;
 }
 ///ws/{name:[\w\W]}
-const conn=new WebSocket(`ws://${window.location.host}/ws/${window.location.pathname.split("/")[1]}`)
-conn.addEventListener("message",(event)=>{
+console.log(window.location.pathname.split("/")[2]);
+const ws = new WebSocket(
+  `ws://${window.location.host}/ws/${window.location.pathname.split("/")[2]}`
+);
+
+const sendMsg=()=>{
+    ws.send(JSON.stringify({
+   author: document.getElementById("author" ).value,
+   message:document.getElementById("message").value})
     
-    console.log(JSON.parse(event.data))
-})
+
+}
+ws.onmessage=(event) => {
+  console.log(JSON.parse(event.data));
+}
