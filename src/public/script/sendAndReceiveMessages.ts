@@ -11,7 +11,7 @@ interface Message {
 }
 ///ws/{name:[\w\W]}
 const ws = new WebSocket(
-  `ws://${window.location.host}/ws/${window.location.pathname.split("/")[2]}`
+  `wss://${window.location.host}/ws/${window.location.pathname.split("/")[2]}`
 );
 
 const form: HTMLFormElement = document.getElementById("form") as HTMLFormElement;
