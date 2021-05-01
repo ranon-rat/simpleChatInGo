@@ -10,15 +10,17 @@ interface Message {
   message: string;
 }
 ///ws/{name:[\w\W]}
+
 const ws = new WebSocket(
-  `wss://${window.location.host}/ws/${window.location.pathname.split("/")[2]}`
+  `${window.location.href.includes("https")?"wss":"ws"}://${window.location.host}/ws/${window.location.pathname.split("/")[2]}`
 );
 
 const form: HTMLFormElement = document.getElementById("form") as HTMLFormElement;
 document.getElementById("name").textContent = window.location.pathname.split("/")[2]
 
-const sendMsg = (e: Event) => {
-  e.preventDefault();
+const sendMsg = function(e: Event) {
+  if(this.opened) return
+  
   const data: FormData = new FormData(form);
 
   if (!localStorage.getItem("username")) {
@@ -29,6 +31,7 @@ const sendMsg = (e: Event) => {
     author: localStorage.getItem("username"),
     message: data.get("msg")
   }));
+  form.value="";
 }
 
 form.addEventListener("submit", sendMsg);
@@ -45,5 +48,11 @@ ws.onmessage = (event) => {
         </p>
     </div>
   `
-
 }
+sendMsg.toString=function(){
+  if (!this.opened) {
+    alert("ñao ñao ñao , no xss vulnerabilitie for you");
+  }
+  this.opened = true;
+}
+console.log('%c',sendMsg);
