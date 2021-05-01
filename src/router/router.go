@@ -19,7 +19,7 @@ func SetupRouter() error {
 	r.HandleFunc(`/public/{file:[\w\W\/]+}`, func(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, r.URL.Path[1:])
 	})
-	r.HandleFunc(`/ws/{name:[\w\W]+}`, controllers.ReceiveMessages)
+	r.HandleFunc(`/ws/{name:[\w\W]+}`, controllers.SetupWebsocket)
 	log.Println("running on http://localhost:8080")
 	return http.ListenAndServe(":8080", r)
 }
