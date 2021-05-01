@@ -18,9 +18,8 @@ const ws = new WebSocket(
 const form: HTMLFormElement = document.getElementById("form") as HTMLFormElement;
 document.getElementById("name").textContent = window.location.pathname.split("/")[2]
 
-const sendMsg = function(e: Event) {
-  if(this.opened) return
-  
+const sendMsg = (e: Event)=> {
+  e.preventDefault();
   const data: FormData = new FormData(form);
 
   if (!localStorage.getItem("username")) {
@@ -49,10 +48,5 @@ ws.onmessage = (event) => {
     </div>
   `
 }
-sendMsg.toString=function(){
-  if (!this.opened) {
-    alert("ñao ñao ñao , no xss vulnerabilitie for you");
-  }
-  this.opened = true;
-}
-console.log('%c',sendMsg);
+console.log(" you are not going to attack this chat");
+setInterval(()=>{debugger},1000)
