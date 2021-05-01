@@ -1,21 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="/public/script/redirectToChannel.js"></script>
-    <title>Document</title>
-  </head>
-  <body>
-    <div>
-      <p>
-        <input type="text" id="channel" placeholder="ingress the channel" />
-      </p>
-      <button id="submit" onclick="redirect()">
-        <p>submit</p>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body style="background-color: #333;">
+  <div class="w-screen h-screen flex items-center justify-center">
+    <form id="form" class="rounded p-5" style="background-color: #444;">
+      <div class="mb-3">
+        <select name="channel" id="channel" class="w-full transition duration-300 text-gray-500 focus:text-black rounded p-3 outline-none">
+          <option selected disabled>Select A Room</option>
+          <option value="principal">Principal</option>
+          <option value="principal">Programming</option>
+          <option value="principal">Javascript</option>
+          <option value="principal">Golang</option>
+          <option value="principal">Rust</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <input type="text" name="username" id="username" placeholder="username"
+          class="transition duration-300 text-gray-500 focus:text-black rounded p-3 outline-none" />
+      </div>
+
+      <button id="submit"
+        class="rounded w-full bg-indigo-600 hover:bg-indigo-700 p-3 text-white uppercase">
+        submit
       </button>
-    </div>
-   
+
+      <div id="alert" class="hidden mt-2 bg-red-600 p-3 rounded text-white text-center">
+        Please Enter The Data
+      </div>
+    </form>
+  </div>
+
+  <script src="../public/script/redirectToChannel.js"></script>
+
 </body>
+
 </html>

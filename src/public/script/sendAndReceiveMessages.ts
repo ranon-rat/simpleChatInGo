@@ -2,8 +2,8 @@
  * the json of the message it should to have this structure
  * ```
  * interface {
-	Author  string `json:"author"`
-	Message string `json:"message"`}
+  Author  string `json:"author"`
+  Message string `json:"message"`}
  */
 interface Message {
   author: string;
@@ -15,20 +15,35 @@ const ws = new WebSocket(
   `ws://${window.location.host}/ws/${window.location.pathname.split("/")[2]}`
 );
 
-const sendMsg=()=>{
-    ws.send(JSON.stringify({
-   author: document.getElementById("author" ).value,
-   message:document.getElementById("message").value})
-    
+const form: HTMLFormElement = document.getElementById("form") as HTMLFormElement;
 
+const sendMsg = (e: Event) => {
+  e.preventDefault();
+  const data: FormData = new FormData(form);
+
+  if (!localStorage.getItem("username")) {
+    location.replace("http://"+window.location.host+"/channel/")
+  }
+
+  ws.send(JSON.stringify({
+    author: localStorage.getItem("username"),
+    message: data.get("msg")
+  }));
 }
-ws.onmessage=(event) => {
-  let msg:Message=JSON.parse(event.data)
-  document.getElementById("messages").innerHTML+=`
-  <h1> author ${msg.author}</h1>  
-  <h1> new message ${msg.message}</h1>
-    
-    
+
+form.addEventListener("submit", sendMsg);
+
+ws.onmessage = (event) => {
+  let msg: Message = JSON.parse(event.data)
+  document.getElementById("messages").innerHTML += `
+    <div class="bg-white rounded p-2 mb-2">
+        <span>
+            ${msg.author}
+        </span>
+        <p class="text-sm">
+            ${msg.message}
+        </p>
+    </div>
   `
 
 }
