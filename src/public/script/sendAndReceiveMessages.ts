@@ -10,12 +10,12 @@ interface Message {
   message: string;
 }
 ///ws/{name:[\w\W]}
-console.log(window.location.pathname.split("/")[2]);
 const ws = new WebSocket(
   `ws://${window.location.host}/ws/${window.location.pathname.split("/")[2]}`
 );
 
 const form: HTMLFormElement = document.getElementById("form") as HTMLFormElement;
+document.getElementById("name").textContent = window.location.pathname.split("/")[2]
 
 const sendMsg = (e: Event) => {
   e.preventDefault();
