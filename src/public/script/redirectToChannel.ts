@@ -1,8 +1,14 @@
 const form: HTMLFormElement = document.getElementById("form") as HTMLFormElement;
-const button = document.querySelector("#submit")
+const username: HTMLInputElement = document.getElementById("username") as HTMLInputElement;
+const button = document.querySelector("#submit");
+
+if (localStorage.getItem("username")) {
+    username.value = localStorage.getItem("username")
+}
 
 const redirect = (e: Event) => {
     e.preventDefault();
+
     const data: FormData = new FormData(form);
     
     if (data.get("channel") === "" || data.get("username") === "" ) {

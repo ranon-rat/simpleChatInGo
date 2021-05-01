@@ -13,8 +13,14 @@
   <div class="w-screen h-screen flex items-center justify-center">
     <form id="form" class="rounded p-5" style="background-color: #444;">
       <div class="mb-3">
-        <input type="text" name="channel" id="channel" placeholder="ingress the channel"
-          class="transition duration-300 text-gray-500 focus:text-black rounded p-3 outline-none" />
+        <select name="channel" id="channel" class="w-full transition duration-300 text-gray-500 focus:text-black rounded p-3 outline-none">
+          <option selected disabled>Select A Room</option>
+          <option value="principal">Principal</option>
+          <option value="principal">Programming</option>
+          <option value="principal">Javascript</option>
+          <option value="principal">Golang</option>
+          <option value="principal">Rust</option>
+        </select>
       </div>
 
       <div class="mb-3">
