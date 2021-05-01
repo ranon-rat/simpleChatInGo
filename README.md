@@ -9,7 +9,8 @@ For deploy this you only need to run the command :
 $ docker compose up
 ```
 ## contributors
-a lot of thanks for the help of [ark](https://github.com/RodrigoAlanisWeb)
+
+thanks to [ark](https://github.com/RodrigoAlanisWeb) for doing the frontend 
 ## how it looks
 The homepage
 
