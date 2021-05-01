@@ -18,11 +18,12 @@ func ReceiveMessages(w http.ResponseWriter, r *http.Request) {
 	}
 	log.Println("new connection on", name)
 	defer ws.Close()
-	Message[name] = make(chan stuff.Messages)
+
 	// some stuff for do this work
 	// lo que estoy haciendo aqui es checar si el canal que se a ingresado , en el caso de que no exista , se cierra
 
 	if _, exist := Clients[name]; !exist {
+		Message[name] = make(chan stuff.Messages)
 		Clients[name] = make(map[*websocket.Conn]bool)
 	}
 	Clients[name][ws] = true
